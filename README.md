@@ -3,13 +3,7 @@
 PlayTube is a **full-stack MERN-based video streaming web application** inspired by YouTube.  
 It is built to demonstrate **real-world software engineering skills**, including secure authentication, cloud storage, scalable backend APIs, and **AI integration using Google Gemini**.
 
-This project follows **industry-level best practices** and is designed to leave a strong impression on recruiters.
-
----
-
-## 🚀 Live Demo
-- **Frontend:** (Add frontend deployed link)
-- **Backend API:** (Add backend deployed link)
+This project follows **industry-level best practices**.
 
 ---
 
