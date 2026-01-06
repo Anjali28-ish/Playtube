@@ -148,7 +148,7 @@ function App() {
           path="/createplaylist"
           element={
             <ProtectRoute userData={userData}>
-              <CreatePlayList />
+              <CreatePlaylist />
             </ProtectRoute>
           }
         />
