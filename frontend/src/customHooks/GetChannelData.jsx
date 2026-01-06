@@ -1,47 +1,50 @@
-import axios from "axios"
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { serverUrl } from "../App"
-import { setAllChannelData, setChannelData } from "../redux/userSlice"
+import axios from 'axios'
+import React from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { serverUrl } from '../App'
+import { setAllShortsData, setAllVideosData } from '../redux/contentSlice'
 
-const useGetChannelData = () => {
+const GetAllContentData = () => {
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    const fetchChannel = async () => {
-      try {
-        const result = await axios.get(
-          serverUrl + "/api/user/getchannel",
-          { withCredentials: true }
-        )
-        dispatch(setChannelData(result.data))
-        console.log("getchannel:", result.data)
-      } catch (error) {
-        console.log("getchannel error:", error.response?.data)
-        dispatch(setChannelData(null))
+  const {channelData} = useSelector(state=>state.user)
+    
+  
+    useEffect(() => {
+      const fetchAllVideos = async () => {
+        try {
+          const result = await axios.get(
+            serverUrl + "/api/content/getallvideos",
+            { withCredentials: true }
+          )
+          dispatch(setAllVideosData(result.data))
+          console.log(result.data)
+        } catch (error) {
+          console.log(error)
+          dispatch(setAllVideosData(null))
+        }
       }
-    }
+  
+      fetchAllVideos()
+    }, [channelData])
 
-    fetchChannel()
-  }, [dispatch])
-
-  useEffect(() => {
-    const fetchAllChannel = async () => {
-      try {
-        const result = await axios.get(
-          serverUrl + "/api/user/allchannel",
-          { withCredentials: true }
-        )
-        dispatch(setAllChannelData(result.data))
-        console.log("allchannel:", result.data)
-      } catch (error) {
-        console.log("allchannel error:", error.response?.data)
-        dispatch(setAllChannelData(null))
+    useEffect(() => {
+      const fetchAllShorts = async () => {
+        try {
+          const result = await axios.get(
+            serverUrl + "/api/content/getallshorts",
+            { withCredentials: true }
+          )
+          dispatch(setAllShortsData(result.data))
+          console.log(result.data)
+        } catch (error) {
+          console.log(error)
+          dispatch(setAllShortsData(null))
+        }
       }
-    }
-
-    fetchAllChannel()
-  }, [dispatch])
+  
+      fetchAllShorts()
+    }, [channelData])
 }
 
-export default useGetChannelData
+export default GetAllContentData
