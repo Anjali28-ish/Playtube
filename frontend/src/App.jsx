@@ -16,7 +16,7 @@ import UpdateChannel from "./pages/Channel/UpdateChannel";
 import CreatePage from "./pages/CreatePage";
 import CreateVideo from "./pages/Videos/CreateVideo";
 import CreateShort from "./pages/Shorts/CreateShort";
-import CreatePlayList from "./pages/PlayList/CreatePlayList";
+import CreatePlaylist from "./pages/PlayList/CreatePlaylist";
 import CreatePost from "./pages/Post/CreatePost";
 import GetAllContentData from "./customHooks/GetAllContentData";
 import PlayVideo from "./pages/Videos/PlayVideo";
@@ -24,7 +24,7 @@ import ChannelPage from "./pages/Channel/ChannelPage";
 import PlayShort from "./pages/Shorts/PlayShort";
 import LikedContent from "./pages/LikedContent";
 import SavedContent from "./pages/SavedContent";
-import SavedPlayList from "./pages/PlayList/SavedPlayList";
+import SavedPlaylist from "./pages/PlayList/SavedPlaylist";
 import GetSubscribedData from "./customHooks/GetSubscribedData";
 import Subscription from "./pages/Subscription";
 import GetHistory from "./customHooks/GetHistory";
@@ -37,7 +37,7 @@ import Dashboard from "./components/Dashboard";
 import PTStudio from "./pages/PTStudio";
 import UpdateVideo from "./pages/Videos/UpdateVideo";
 import UpdateShort from "./pages/Shorts/UpdateShort";
-import UpdatePlayList from "./pages/PlayList/UpdatePlayList";
+import UpdatePlaylist from "./pages/PlayList/UpdatePlaylist";
 
 
 export const serverUrl = "https://playtube-backend-s0xx.onrender.com";
