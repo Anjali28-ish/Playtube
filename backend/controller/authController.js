@@ -155,8 +155,8 @@ export const googleAuth = async (req,res) => {
       })
     }else{
       if(!user.photoUrl && googlePhoto){
-        user.photoUrl = googlePhotoawait
-         user.save()
+        user.photoUrl = googlePhoto;
+        await user.save()
       }
     }
 
