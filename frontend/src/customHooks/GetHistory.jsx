@@ -1,39 +1,34 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { serverUrl } from '../App'
-import { setShortHistory, setVideoHistory } from '../redux/userSlice'
-
-
-
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import api from '../api/api'; // <-- use the api.js helper
+import { setShortHistory, setVideoHistory } from '../redux/userSlice';
 
 const GetHistory = () => {
- const dispatch = useDispatch()
- 
-   useEffect(() => {
-     const fetchHistory = async () => {
-       try {
-         const result = await axios.get(
-           serverUrl + "/api/user/gethistory",
-           { withCredentials: true })
-           const history = result.data
+  const dispatch = useDispatch();
 
-           const Videos = history.filter((v)=>v.contentType === "Video")
-           const Shorts = history.filter((v)=>v.contentType === "Short")
+  useEffect(() => {
+    const fetchHistory = async () => {
+      try {
+        // Use api instance instead of axios
+        const result = await api.get("/api/user/gethistory"); 
+        const history = result.data;
 
-           dispatch(setVideoHistory(Videos))
-           dispatch(setShortHistory(Shorts))
-           console.log({Videos,Shorts})
-         
-       } catch (error) {
-         console.log(error)
-         dispatch(setVideoHistory([]))
-         dispatch(setVideoHistory([]))
-       }
-     }
- 
-     fetchHistory()
-   }, [])
-}
+        const Videos = history.filter((v) => v.contentType === "Video");
+        const Shorts = history.filter((v) => v.contentType === "Short");
 
-export default GetHistory
+        dispatch(setVideoHistory(Videos));
+        dispatch(setShortHistory(Shorts));
+
+        console.log({ Videos, Shorts });
+      } catch (error) {
+        console.log("getHistory error:", error.response?.data || error.message);
+        dispatch(setVideoHistory([]));
+        dispatch(setShortHistory([])); // <-- fix duplicate dispatch
+      }
+    };
+
+    fetchHistory();
+  }, [dispatch]);
+};
+
+export default GetHistory;
