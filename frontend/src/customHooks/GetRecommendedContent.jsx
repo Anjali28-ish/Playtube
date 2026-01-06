@@ -1,30 +1,32 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { serverUrl } from '../App'
-import { setRecommendedContent } from '../redux/userSlice'
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import api from "../api/api";   // 👈 api.js import
+import { setRecommendedContent } from "../redux/userSlice";
 
 const GetRecommendedContent = () => {
-const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchRecommendedContent = async () => {
       try {
-        const result = await axios.get(
-          serverUrl + "/api/user/recommendation",
-          { withCredentials: true })
-          dispatch(setRecommendedContent(result.data))
-          console.log(result.data)
-      
+        const result = await api.get("/api/user/recommendation"); 
+        // 👆 token + baseURL automatically attach hoga
+
+        dispatch(setRecommendedContent(result.data || []));
+        console.log("Recommended content:", result.data);
       } catch (error) {
-        console.log(error)
-        dispatch(setRecommendedContent(null))
+        console.error(
+          "GetRecommendedContent error:",
+          error.response?.data || error.message
+        );
+        dispatch(setRecommendedContent([]));
       }
-    }
+    };
 
-    fetchRecommendedContent()
-  }, [])
-}
+    fetchRecommendedContent();
+  }, [dispatch]);
 
-export default GetRecommendedContent
+  return null;
+};
+
+export default GetRecommendedContent;
