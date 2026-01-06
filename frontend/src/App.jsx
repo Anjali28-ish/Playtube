@@ -24,7 +24,7 @@ import ChannelPage from "./Pages/Channel/ChannelPage";
 import PlayShort from "./pages/Shorts/PlayShort";
 import LikedContent from "./pages/LikedContent";
 import SavedContent from "./pages/SavedContent";
-import SavedPlaylist from "./pages/PlayList/SavedPlaylist";
+import SavedPlayList from "./pages/PlayList/SavedPlayList";
 import GetSubscribedData from "./customHooks/GetSubscribedData";
 import Subscription from "./pages/Subscription";
 import GetHistory from "./customHooks/GetHistory";
@@ -37,10 +37,10 @@ import Dashboard from "./components/Dashboard";
 import PTStudio from "./pages/PTStudio";
 import UpdateVideo from "./pages/Videos/UpdateVideo";
 import UpdateShort from "./pages/Shorts/UpdateShort";
-import UpdatePlaylist from "./pages/PlayList/UpdatePlaylist";
+import UpdatePlayList from "./pages/PlayList/UpdatePlayList";
 
 
-export const serverUrl = "http://localhost:8000";
+export const serverUrl = "https://playtube-backend-s0xx.onrender.com";
 
 /* ================= PROTECTED ROUTE ================= */
 const ProtectRoute = ({ userData, children }) => {
