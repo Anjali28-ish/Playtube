@@ -20,7 +20,7 @@ import CreatePlayList from "./pages/PlayList/CreatePlayList";
 import CreatePost from "./pages/Post/CreatePost";
 import GetAllContentData from "./customHooks/GetAllContentData";
 import PlayVideo from "./pages/Videos/PlayVideo";
-import ChannelPage from "./Pages/Channel/ChannelPage";
+import ChannelPage from "./pages/Channel/ChannelPage";
 import PlayShort from "./pages/Shorts/PlayShort";
 import LikedContent from "./pages/LikedContent";
 import SavedContent from "./pages/SavedContent";
