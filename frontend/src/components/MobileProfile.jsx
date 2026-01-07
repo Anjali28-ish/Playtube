@@ -70,7 +70,7 @@ function MobileProfile() {
           <div className="flex flex-col">
             <span className="font-semibold text-lg">{userData.userName}</span>
             <span className="text-gray-400 text-sm">{userData.email}</span>
-            <p className="text-sm text-blue-400 cursor-pointer hover:underline" onClick={()=>{userData?.channel ? navigate("/viewchannel") :navigate("/Createchannel")}}>
+            <p className="text-sm text-blue-400 cursor-pointer hover:underline" onClick={()=>{userData?.channel ? navigate("view Channel") :navigate("Create Channel")}}>
               {userData.channel ? "View channel" : "Create Channel"}
             </p>
           </div>
@@ -123,7 +123,7 @@ function MobileProfile() {
         onClick={()=>navigate("/savedcontent")} />
         <ProfileMenuItem icon={<FaThumbsUp />} text="Liked Videos"
         onClick={()=>navigate("/likedcontent")} />
-        <ProfileMenuItem icon={<SiYoutubestudio />} text="PT Studio"  onClick={()=>navigate("/ptstudio/dashboard")} />{/*change */}
+        <ProfileMenuItem icon={<SiYoutubestudio />} text="PT Studio"  onClick={()=>navigate("/ptstudio/dashboard")} />
       </div>
     </div>
   );
