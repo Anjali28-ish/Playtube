@@ -31,32 +31,15 @@ function ChannelPage() {
   const channelData = allChannelData?.find((c) => c._id === channelId)
 
   const [channel, setChannel] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [activeTab, setActiveTab] = useState("Videos")
   const [isSubscribed, setIsSubscribed] = useState(false)
   const [duration, setDuration] = useState({})
 
   /* 🔥 FIX 1: channel sync */
- useEffect(() => {
-  const fetchChannel = async () => {
-    setLoading(true)
-    try {
-      let c = allChannelData?.find((c) => c._id === channelId)
-      if (!c) {
-        const res = await axios.get(`${serverUrl}/api/user/getchannel/${channelId}`, {
-          withCredentials: true,
-        })
-        c = res.data
-      }
-      setChannel(c)
-    } catch (err) {
-      console.log(err)
-    } finally {
-      setLoading(false)
-    }
-  }
-  fetchChannel()
-}, [allChannelData, channelId])
+  useEffect(() => {
+    if (channelData) setChannel(channelData)
+  }, [channelData])
 
   /* video duration */
   useEffect(() => {
@@ -106,8 +89,7 @@ function ChannelPage() {
     }
   }
 
- if (loading || !channel) return <ClipLoader size={50} color="white" className="mx-auto mt-40" />
-
+  if (!channel) return null
 
   return (
     <div className="text-white min-h-screen pt-[100px]">
