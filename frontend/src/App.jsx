@@ -64,6 +64,7 @@ function App() {
   const location = useLocation();
   return <ChannelPage key={location.pathname} />;
   }
+
   return (
     <>
       <CustomAlert />
@@ -161,11 +162,14 @@ function App() {
             </ProtectRoute>
           }
         />
-        <Route
-  path="/channelpage/:channelId"
-  element={<ChannelPage />}
-/>
-
+         <Route
+          path="/channelpage/:channelId"
+          element={
+            <ProtectRoute userData={userData}>
+              <ChannelPageWrapper />
+            </ProtectRoute>
+          }
+        />
 
 
 
@@ -273,7 +277,6 @@ createvideo
             </ProtectRoute>
           }
         />
-
         <Route
           path="/ptstudio/revenue"
           element={
@@ -291,33 +294,29 @@ createvideo
             </ProtectRoute>
           }
         />
-
-        <Route
+         <Route
           path="/ptstudio/updateshort/:shortId"
           element={
             <ProtectRoute userData={userData}>
-              <UpdateShort/>
+              <UpdateShort
+              />
             </ProtectRoute>
           }
         />
-
         <Route
           path="/ptstudio/updateplaylist/:playlistId"
           element={
             <ProtectRoute userData={userData}>
-              <UpdatePlaylist />
+              <UpdatePlaylist
+              />
             </ProtectRoute>
           }
         />
-
-        
-
-
       </Route>
-
       </Routes>
     </>
   );
 }  
                 
 export default App;
+ 
