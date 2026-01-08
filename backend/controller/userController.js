@@ -354,8 +354,8 @@ export const getRecommendedContent = async (req, res) => {
     // Collect liked & saved content
     const likedVideos = await Video.find({ likes: userId });
     const likedShorts = await Short.find({ likes: userId });
-    const savedVideos = await Video.find({ likes: userId });
-    const savedShorts = await Short.find({ likes: userId });
+    const savedVideos = await Video.find({ saveBy: userId });
+    const savedShorts = await Short.find({ saveBy: userId });
 
     const likedSavedKeywords = [
       ...likedVideos.map(v => v.title),
