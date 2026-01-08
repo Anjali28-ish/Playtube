@@ -37,9 +37,25 @@ function ChannelPage() {
   const [duration, setDuration] = useState({})
 
   /* 🔥 FIX 1: channel sync */
-  useEffect(() => {
-    if (channelData) setChannel(channelData)
-  }, [channelData])
+ useEffect(() => {
+  const fetchChannel = async () => {
+    try {
+      const res = await axios.get(
+        `${serverUrl}/api/channel/${channelId}`,
+        { withCredentials: true }
+      )
+      setChannel(res.data)
+    } catch (err) {
+      console.log("Channel fetch failed", err)
+    }
+  }
+
+  if (channelData) {
+    setChannel(channelData)
+  } else {
+    fetchChannel()
+  }
+}, [channelId, channelData])
 
   /* video duration */
   useEffect(() => {
@@ -89,7 +105,13 @@ function ChannelPage() {
     }
   }
 
-  if (!channel) return null
+ if (!channel)
+  return (
+    <div className="h-screen flex justify-center items-center">
+      <ClipLoader color="white" />
+    </div>
+  )
+
 
   return (
     <div className="text-white min-h-screen pt-[100px]">
