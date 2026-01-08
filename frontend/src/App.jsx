@@ -161,14 +161,11 @@ function App() {
             </ProtectRoute>
           }
         />
-         <Route
-          path="/channelpage/:channelId"
-          element={
-            <ProtectRoute userData={userData}>
-              <ChannelPageWrapper />
-            </ProtectRoute>
-          }
-        />
+        <Route
+  path="/channelpage/:channelId"
+  element={<ChannelPage />}
+/>
+
 
 
 
